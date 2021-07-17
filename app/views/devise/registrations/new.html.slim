@@ -1,0 +1,58 @@
+.row.padding-20
+  .col-4
+  .col-4  
+      h2
+        | Регистрация нового пользователя
+.row.padding-20
+  .col-4
+  .col-4
+      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+        = render "devise/shared/error_messages", resource: resource
+        .field
+        .form-group
+          = f.label :Фамилия
+          br
+          = f.text_field :surname, autocomplete: "Фамилия", class: "form-control"
+
+        .form-group
+          = f.label :Имя
+          br
+          = f.text_field :first_name, autocomplete: "Имя", class: "form-control"
+
+        .form-group
+          = f.label :Отчество
+          br
+          = f.text_field :last_name, autocomplete: "Отчество", class: "form-control"
+
+
+        .form-group
+          = f.label :email
+          br
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
+          p
+
+        .form-group
+          = f.label :password
+            - if @minimum_password_length
+              em
+                | (
+                = @minimum_password_length
+                |  знаков минимально)
+          br
+          = f.password_field :password, autocomplete: "new-password", class: "form-control"
+          p
+        .form-group
+          .field
+            = f.label :'Повторите пароль'
+            br
+            = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control"
+        
+        .actions
+          br
+          = f.submit "Зарегистироваться", class: "btn btn-primary"
+          br
+          p
+         
+
+      = render "devise/shared/links"
+      p
